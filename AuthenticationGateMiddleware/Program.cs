@@ -1,5 +1,6 @@
 using AuthenticationGateMiddleware.Extensions;
 using AuthenticationGateMiddleware.Middlewares;
+using Microsoft.OpenApi.Models;
 
 namespace AuthenticationGateMiddleware;
 
@@ -15,10 +16,8 @@ public class Program
 
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
         builder.Services.AddOpenApi();
-        builder.Services.AddSwaggerGen();
-        builder.Logging.ClearProviders();
-        builder.Logging.AddConsole();
-        builder.Logging.AddFile("Logs/app-{Date}.txt");
+        builder.Services.AddSwaggerGenWithAuthSupport();
+        builder.Logging.ConfigureLogging();
 
         var app = builder.Build();
 
